@@ -1,0 +1,22 @@
+{
+  "name": "IndieWeb Reply",
+  "description": "This extension modifies all 'reply' links on Twitter to pop up a 'reply' dialog on your own web page",
+  "version": "0.0.1",
+  "icons": { 
+    "128": "mail_128x128.png" 
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["http://twitter.com/*", "https://twitter.com/*", "https://alpha.app.net/*"],
+      "js": ["jquery-1.7.1.min.js", "content_script.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "background", "tabs", "http://*/*", "https://*/*"
+  ],
+  "manifest_version": 2
+}
