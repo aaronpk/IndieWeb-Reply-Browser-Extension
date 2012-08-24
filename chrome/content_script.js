@@ -4,24 +4,29 @@
  * LICENSE file.
  */
 
-$("a.js-action-reply").each(function(i,e){
-  $(e).click(function(evt){
-    var tweet = $(evt.target).parents(".tweet");
-    var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
+function bindTwitter() {
+    $("a.js-action-reply").each(function(i,e){
+      $(e).click(function(evt){
+        var tweet = $(evt.target).parents(".tweet");
+        var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
 
-    // TODO: THIS IS A HACK! see below.
-    var postURL = "http://pk2.dev/admin/?reply_to=" + encodeURI(url);
-    window.open(postURL);
+        // TODO: THIS IS A HACK! see below.
+        var postURL = "http://pk2.dev/admin/?reply_to=" + encodeURI(url);
+        window.open(postURL);
 
-    // TODO: Need to either get the page URL from the extension preferences, or send an event to the extension
-    // where the extension can open the new window
-    // chrome.extension.sendMessage({url: url}, function(response) {
-    //   console.log(response);
-    // });
+        // TODO: Need to either get the page URL from the extension preferences, or send an event to the extension
+        // where the extension can open the new window
+        // chrome.extension.sendMessage({url: url}, function(response) {
+        //   console.log(response);
+        // });
 
-    return false;
-  });
-});
+        return false;
+      });
+    });
+}
+
+bindTwitter();
+setTimeout(bindTwitter, 5000);
 
 $("a[data-reply-to='']").each(function(i,e){
   $(e).click(function(evt){
