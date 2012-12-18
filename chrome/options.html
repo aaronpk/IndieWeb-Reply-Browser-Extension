@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!doctype>
 <html>
 <head>
   <title>Options for the IndieWeb Reply Extension</title>
@@ -8,16 +8,24 @@
    * LICENSE file.
   -->
   <style>
-    #providerSelection {
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 10pt;
+    body {
+    	font-family: "Georgia", serif;
+    	font-size: 18px;
+    }
+    
+    input[type=url] {
+    	font-size: 18px;
+    	width: 50em;
+    	max-width: 100%;
     }
   </style>
   <script src="options.js"></script>
 </head>
 <body>
+	<h1>Indieweb Reply Preferences</h1>
+	
 	<div id="providerSelection">
-		<p>Enter the URL of your “new note” UI:</p>
+		<p>Enter the URL of your new note UI:</p>
 		
 		<label>URL: <input id="postURL" name="postURL" type="url" /></label>
 		

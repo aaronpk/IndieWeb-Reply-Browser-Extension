@@ -24,6 +24,8 @@ function bindTwitter() {
 			
 			// Replace template vars
 			for (var template in replace) {
+				if (replace[template] == undefined)
+					continue;
 				postURL = postURL.split('{' + template + '}').join(replace[template]);
 			}
 			
