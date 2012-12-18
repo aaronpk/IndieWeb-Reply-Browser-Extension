@@ -99,27 +99,6 @@ IndieWebReplyModule = (function (){
 				$(e).replaceWith(newButton);
 			});
 		});
-		
-		/**on('click', function (evt) {
-			console.log('DOING SHAREY STUFF');
-			// Prevent the bad stuff from happening
-			
-			alert('DOING SHAREY STUFF NOW');
-			
-			// Make the good stuff happen
-			var url = $(evt.target).attr('src');
-			var properties = parseQueryStringFragment(url, function (properties) {
-				// When the parse is finished, open the note UI
-				openNoteUI({
-					url: properties.url,
-					via: '@' + properties.via,
-					hashtags: properties.hashtags,
-					text: properties.text
-				});
-			});
-			
-			return false;
-		});*/
 	}
 	
 	// Public
