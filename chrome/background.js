@@ -22,14 +22,23 @@ chrome.extension.onMessage.addListener(function (request, sender, sendResponse) 
 	console.log(sender);
 	console.log(sendResponse);
 	
+	var response = {};
+	
+	// Deal with localStorage requests
 	if (request.getLocalStorage !== undefined) {
 		console.log('Getting locally stored variable ' + request.getLocalStorage);
 		
-		var response = {};
 		response[request.getLocalStorage] = window.localStorage[request.getLocalStorage];
-		
-		sendResponse(response);
 	}
+	
+	// Deal with parseQueryString requests
+	if (request.parseQueryString !== undefined) {
+		var uri = new URI(response.parseQueryString);
+		response['queryString'] = uri.search(true);
+	}
+	
+	// Send the completed response
+	sendResponse(response);
 });
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
