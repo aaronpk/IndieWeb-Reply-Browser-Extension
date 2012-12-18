@@ -84,7 +84,8 @@ IndieWebReplyModule = (function (){
 				var newButton = $('<div>Post to your Indieweb Site</div>')
 					.css({
 						'padding': '0.5em',
-						'border': '1px black solid'
+						'border': '1px black solid',
+						'cursor': 'pointer'
 					})
 					.click(function () {
 						openNoteUI({
