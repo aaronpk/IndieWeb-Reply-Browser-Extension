@@ -34,6 +34,12 @@ IndieWebReplyModule = (function (){
 		});
 	}
 	
+	function parseQueryStringFragment(url, callback) {
+		chrome.extension.sendMessage({'parseQueryStringFragment': url}, function (response) {
+			callback(response.queryString);
+		});
+	}
+	
 	function bindTwitter() {
 		$("a.js-action-reply").each(function(i,e){
 		  $(e).unbind("click").click(function(evt){
@@ -68,7 +74,13 @@ IndieWebReplyModule = (function (){
 	function bindTwitterShareButtons() {
 		console.log('Binding twitter share buttons');
 		$('.twitter-share-button').each(function (i, e) {
-			console.log($(e).attr('src'));
+			var src = $(e).attr('src');
+			console.log(src);
+			
+			parseQueryStringFragment(src, function (properties) {
+				console.log('Parsed query string fragment:');
+				console.log(properties);
+			});
 		});
 		
 		/**on('click', function (evt) {
