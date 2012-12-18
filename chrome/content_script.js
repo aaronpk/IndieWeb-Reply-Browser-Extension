@@ -9,18 +9,30 @@ function bindTwitter() {
       $(e).unbind("click").click(function(evt){
         var tweet = $(evt.target).parents(".tweet");
         var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
-
-        // TODO: THIS IS A HACK! see below.
-        var postURL = "http://pk.dev/admin/?reply_to=" + encodeURI(url);
-        window.open(postURL);
-
-        // TODO: Need to either get the page URL from the extension preferences, or send an event to the extension
-        // where the extension can open the new window
-        // chrome.extension.sendMessage({url: url}, function(response) {
-        //   console.log(response);
-        // });
-
-        return false;
+		
+		var replace = {
+			url: encodeURI(url)
+		};
+		
+		chrome.extension.sendMessage({'getLocalStorage': 'IndieWebReplyPostURL'}, function (response) {
+			var postURL = response.IndieWebReplyPostURL;
+			
+			if (postURL === undefined) {
+				alert('You must set a Reply Post URL in Chrome options in order to use IndieWeb Reply');
+				return false;
+			}
+			
+			// Replace template vars
+			for (var template in replace) {
+				if (replace[template] == undefined)
+					continue;
+				postURL = postURL.split('{' + template + '}').join(replace[template]);
+			}
+			
+			window.open(postURL);
+		});
+		
+		return false;
       });
     });
 }

@@ -9,7 +9,7 @@ function saveURL(evt) {
     alert('Local storage is required for changing providers');
     return;
   }
-  window.localStorage.postURL = evt.target.value;
+  window.localStorage.IndieWebReplyPostURL = evt.target.value;
 }
 
 function main() {
@@ -18,7 +18,7 @@ function main() {
     return;
   }
 
-  document.getElementById('postURL').value = window.localStorage.postURL;
+  document.getElementById('postURL').value = window.localStorage.IndieWebReplyPostURL;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
