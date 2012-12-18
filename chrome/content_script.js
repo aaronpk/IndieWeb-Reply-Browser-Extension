@@ -26,8 +26,12 @@ IndieWebReplyModule = (function (){
 			
 			window.open(postURL);
 		});
+	}
 	
-		return false;
+	function parseQueryString(url, callback) {
+		chrome.extension.sendMessage({'parseQueryString': url}, function (response) {
+			callback(response.queryString);
+		});
 	}
 	
 	function bindTwitter() {
@@ -64,7 +68,22 @@ IndieWebReplyModule = (function (){
 	function bindTwitterShareButtons() {
 		$('.twitter-share-button').each(function(i, e) {
 			$(e).click(function (evt) {
+				// Prevent the bad stuff from happening
+				$(evt).preventDefault();
 				
+				// Make the good stuff happen
+				var url = $(evt.target).attr('href');
+				var properties = parseQueryString(url, function (properties) {
+					// When the parse is finished, open the note UI
+					openNoteUI({
+						url: properties.url,
+						via: '@' + properties.via,
+						hashtags: properties.hashtags,
+						text: properties.text
+					});
+				});
+				
+				return false;
 			});
 		});
 	}
