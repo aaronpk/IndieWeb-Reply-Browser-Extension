@@ -29,11 +29,17 @@
 		
 		<label>URL: <input id="postURL" name="postURL" type="url" /></label>
 		
-		<p>The following expressions will be expanded:</p>
+		<p>The following expressions will be expanded if they are available (empty string if not):</p>
 		
 		<dl>
 			<dt><code>{url}</code>
 			<dd>Expands to the (urlencoded) URL of the current page
+			<dt><code>{via}</code>
+			<dd>Twitter @name from Tweet buttons (without the @ sign)
+			<dt><code>{text}</code>
+			<dd>Pre-filled text from Tweet buttons
+			<dt><code>{hashtags}</code>
+			<dd>Any pre-filled hashtags from Tweet buttons
 		</dl>
 	</div>
 </body>

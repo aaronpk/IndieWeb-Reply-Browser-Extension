@@ -75,12 +75,8 @@ IndieWebReplyModule = (function (){
 		console.log('Binding twitter share buttons');
 		$('.twitter-share-button').each(function (i, e) {
 			var src = $(e).attr('src');
-			console.log(src);
 			
 			parseQueryStringFragment(src, function (properties) {
-				console.log('Parsed query string fragment:');
-				console.log(properties);
-				
 				var newButton = $('<div>Post to your Indieweb Site</div>')
 					.css({
 						'padding': '0.5em',
