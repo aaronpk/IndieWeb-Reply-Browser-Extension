@@ -63,7 +63,9 @@ IndieWebReplyModule = (function (){
 	
 	function bindTwitterShareButtons() {
 		$('.twitter-share-button').each(function(i, e) {
-		
+			$(e).click(function (evt) {
+				
+			});
 		});
 	}
 	

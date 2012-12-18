@@ -5,12 +5,12 @@
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["http://twitter.com/*", "https://twitter.com/*", "https://twitter.com/", "https://alpha.app.net/*"],
+      "matches": ["<all_urls>"],
       "js": ["jquery-1.7.1.min.js", "content_script.js"]
     }
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js", "URI.js"]
   },
   "permissions": [
     "background", "tabs", "http://*/*", "https://*/*"
