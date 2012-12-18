@@ -57,7 +57,7 @@ IndieWebReplyModule = (function (){
 			var url = "https://alpha.app.net/" + $(post).data('post-author-username') + "/post/" + $(post).attr('data-post-id');
 			
 			openNoteUI({
-				url: url;
+				url: url
 			});
 			
 			return false;
@@ -66,26 +66,31 @@ IndieWebReplyModule = (function (){
 	}
 	
 	function bindTwitterShareButtons() {
-		$('.twitter-share-button').each(function(i, e) {
-			$(e).click(function (evt) {
-				// Prevent the bad stuff from happening
-				$(evt).preventDefault();
-				
-				// Make the good stuff happen
-				var url = $(evt.target).attr('href');
-				var properties = parseQueryString(url, function (properties) {
-					// When the parse is finished, open the note UI
-					openNoteUI({
-						url: properties.url,
-						via: '@' + properties.via,
-						hashtags: properties.hashtags,
-						text: properties.text
-					});
-				});
-				
-				return false;
-			});
+		console.log('Binding twitter share buttons');
+		$('.twitter-share-button').each(function (i, e) {
+			console.log($(e).attr('src'));
 		});
+		
+		/**on('click', function (evt) {
+			console.log('DOING SHAREY STUFF');
+			// Prevent the bad stuff from happening
+			
+			alert('DOING SHAREY STUFF NOW');
+			
+			// Make the good stuff happen
+			var url = $(evt.target).attr('src');
+			var properties = parseQueryStringFragment(url, function (properties) {
+				// When the parse is finished, open the note UI
+				openNoteUI({
+					url: properties.url,
+					via: '@' + properties.via,
+					hashtags: properties.hashtags,
+					text: properties.text
+				});
+			});
+			
+			return false;
+		});*/
 	}
 	
 	// Public
