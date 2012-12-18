@@ -80,6 +80,22 @@ IndieWebReplyModule = (function (){
 			parseQueryStringFragment(src, function (properties) {
 				console.log('Parsed query string fragment:');
 				console.log(properties);
+				
+				var newButton = $('<div>Post to your Indieweb Site</div>')
+					.css({
+						'padding': '0.5em',
+						'border': '1px black solid'
+					})
+					.click(function () {
+						openNoteUI({
+							url: properties.url,
+							via: '@' + properties.via,
+							hashtags: properties.hashtags,
+							text: properties.text
+						});
+					});
+			
+				$(e).replaceWith(newButton);
 			});
 		});
 		
