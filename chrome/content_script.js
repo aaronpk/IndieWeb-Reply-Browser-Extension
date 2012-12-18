@@ -51,8 +51,11 @@ IndieWebReplyModule = (function (){
 		  $(e).click(function(evt){
 			var post = $(evt.target).parents(".post-container");
 			var url = "https://alpha.app.net/" + $(post).data('post-author-username') + "/post/" + $(post).attr('data-post-id');
-			var postURL = "http://pk.dev/admin/?reply_to=" + encodeURI(url);
-			window.open(postURL);
+			
+			openNoteUI({
+				url: url;
+			});
+			
 			return false;
 		  });
 		});
