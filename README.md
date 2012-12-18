@@ -3,6 +3,17 @@ IndieWeb Reply
 
 This browser extension rewrites Twitter.com "reply" buttons to open a browser window to your own site, allowing you to post a reply from your site.
 
+## Installation
+
+Until we push it out onto whatever deployment system Chrome use for plugins, you’ll have to clone the repo and install the plugin manually. To do this:
+
+1. Clone the repo to your computer
+1. In chrome, navigate to `chrome://chrome/extensions`
+1. Enable developer mode (top right corner)
+1. Click "Load Packaged Extension"
+1. Navigate to the `/chrome/` folder within the cloned repo
+1. GO!
+
 ## Setup
 
 Before it can be used, you need to set the URL to redirect to in the IndieWeb Reply extension preferences. This URL is a [web action URL](http://waterpigs.co.uk/articles/web-actions/) which should provide a UI for posting a new note.
