@@ -16,24 +16,17 @@
   <script src="options.js"></script>
 </head>
 <body>
-  <table border="0">
-    <tr>
-      <td rowspan="2" valign="top" align="center" width="80">
-        <img src="mail_128x128.png" width="64" height="64" />
-      </td>
-      <td height="22"></td>
-    </tr>
-    <tr>
-      <td valign="center">
-        <div id="providerSelection">
-        <strong>Enter your posting URL:</strong>
-        <br /><br />
-        <label>
-          <input id="postURL" name="postURL" type="text" />
-        </label>
-        </div>
-      </td>
-    </tr>
-  </table>
+	<div id="providerSelection">
+		<p>Enter the URL of your “new note” UI:</p>
+		
+		<label>URL: <input id="postURL" name="postURL" type="url" /></label>
+		
+		<p>The following expressions will be expanded:</p>
+		
+		<dl>
+			<dt><code>{url}</code>
+			<dd>Expands to the (urlencoded) URL of the current page
+		</dl>
+	</div>
 </body>
 </html>
