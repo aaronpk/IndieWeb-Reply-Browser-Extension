@@ -5,12 +5,9 @@
  */
 
 IndieWebReplyModule = (function (){
-	// private
+	// Private
 	
-	function openNoteUI() {
-		var replace = {
-			url: encodeURI(url)
-		};
+	function openNoteUI(replace) {
 		
 		chrome.extension.sendMessage({'getLocalStorage': 'IndieWebReplyPostURL'}, function (response) {
 			var postURL = response.IndieWebReplyPostURL;
@@ -39,7 +36,9 @@ IndieWebReplyModule = (function (){
 			var tweet = $(evt.target).parents(".tweet");
 			var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
 			
-			// TODO: call openNoteUI
+			openNoteUI({
+				url: url
+			});
 			
 			return false;
 		  });
@@ -65,7 +64,7 @@ IndieWebReplyModule = (function (){
 		});
 	}
 	
-	// public
+	// Public
 	
 	return {
 		init: function () {
@@ -77,3 +76,7 @@ IndieWebReplyModule = (function (){
 		}
 	};
 }());
+
+$(document).ready(function () {
+	IndieWebReplyModule.init();
+});
