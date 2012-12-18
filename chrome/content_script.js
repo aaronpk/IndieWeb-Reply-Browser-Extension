@@ -11,9 +11,25 @@ function bindTwitter() {
         var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
 		
 		// Look in localstorage for IndieWebReplyPostURL
+		if (window.localStorage.IndieWebReplyPostURL === undefined) {
+			alert('You must set a Reply Post URL in Chrome options in order to use IndieWeb Reply');
+			return false;
+		}
 		
-		var postURL = "http://pk.dev/admin/?reply_to=" + encodeURI(url);
-        window.open(postURL);
+		var replace = {
+			url: encodeURI(url)
+		};
+		
+		chrome.extension.sendMessage({'getLocalStorage': 'IndieWebReplyPostURL'}, function (response) {
+			var postURL = response.IndieWebReplyPostURL;
+			
+			// Replace template vars
+			for (var template in replace) {
+				postURL = postURL.split('{' + template + '}').join(replace[template]);
+			}
+			
+			window.open(postURL);
+		});
 		
 		return false;
       });

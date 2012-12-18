@@ -16,6 +16,22 @@ chrome.extension.onConnect.addListener(function(port) {
   });
 });
 
+chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
+	console.log('onMessage called with request, sender, response:');
+	console.log(request);
+	console.log(sender);
+	console.log(sendResponse);
+	
+	if (request.getLocalStorage !== undefined) {
+		console.log('Getting locally stored variable ' + request.getLocalStorage);
+		
+		var response = {};
+		response[request.getLocalStorage] = window.localStorage[request.getLocalStorage];
+		
+		sendResponse(response);
+	}
+});
+
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
   console.debug(request);
 });

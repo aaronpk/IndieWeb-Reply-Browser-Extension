@@ -18,7 +18,7 @@ function main() {
     return;
   }
 
-  document.getElementById('postURL').value = window.localStorage.postURL;
+  document.getElementById('postURL').value = window.localStorage.IndieWebReplyPostURL;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
