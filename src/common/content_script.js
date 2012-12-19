@@ -35,7 +35,7 @@ IndieWebReplyModule = (function (){
 	
 	function parseQueryString(url, callback) {
 		var uri = new URI(response.parseQueryString);
-		response['queryString'] = uri.search(true);
+		return uri.search(true);
 	}
 	
 	function parseQueryStringFragment(url, callback) {
@@ -44,7 +44,8 @@ IndieWebReplyModule = (function (){
 		console.log('Fragment:');
 		console.log(fragment);
 		var fragURI = new URI(fragment);
-		response['queryString'] = fragURI.search(true);
+		
+		return fragURI.search(true);
 	}
 	
 	function bindTwitter() {
