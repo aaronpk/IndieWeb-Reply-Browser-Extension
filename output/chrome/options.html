@@ -48,7 +48,7 @@
 		
 		<p>Placeholders (in the form of <code>{name}</code>) can be inserted into these URLs, which will be replaced with the associated bit of metadata if it’s available, or an empty string otherwise.</p>
 		
-		<label><b>Post</b> ⇒ <input id="postURL" name="postURL" type="url" class="monitor" /></label>
+		<label><b>Post</b> ⇒ <input id="postURL" name="postURL" type="url" class="monitor" placeholder="http://example.org/notes/new?text={text}+{url}" /></label>
 		
 		<dl>
 			<dt><code>{url}</code>
@@ -61,7 +61,7 @@
 			<dd>Any pre-filled hashtags from Tweet buttons
 		</dl>
 		
-		<label><b>Reply</b> ⇒ <input id="replyURL" name="replyURL" type="url" class="monitor" /></label>
+		<label><b>Reply</b> ⇒ <input id="replyURL" name="replyURL" type="url" class="monitor" placeholder="http://example.com/notes/new?inReplyTo={url}&text={text}" /></label>
 		
 		<dl>
 			<dt><code>{url}</code>
