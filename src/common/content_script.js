@@ -9,9 +9,7 @@ IndieWebReplyModule = (function (){
 	
 	function openNoteUI(replace) {
 		
-		chrome.extension.sendMessage({'getLocalStorage': 'IndieWebReplyPostURL'}, function (response) {
-			var postURL = response.IndieWebReplyPostURL;
-			
+		kango.invokeAsync('kango.storage.getItem', 'postURL', function (postURL) {
 			if (postURL === undefined) {
 				alert('You must set a Reply Post URL in Chrome options in order to use IndieWeb Reply');
 				return false;
@@ -29,15 +27,11 @@ IndieWebReplyModule = (function (){
 	}
 	
 	function parseQueryString(url, callback) {
-		chrome.extension.sendMessage({'parseQueryString': url}, function (response) {
-			callback(response.queryString);
-		});
+		
 	}
 	
 	function parseQueryStringFragment(url, callback) {
-		chrome.extension.sendMessage({'parseQueryStringFragment': url}, function (response) {
-			callback(response.queryString);
-		});
+		
 	}
 	
 	function bindTwitter() {
