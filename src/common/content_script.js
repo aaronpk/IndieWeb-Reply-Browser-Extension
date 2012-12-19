@@ -52,6 +52,17 @@ IndieWebReplyModule = (function (){
 		return fragURI.search(true);
 	}
 	
+	function createReplacementButton(text, clickCallback) {
+		return $('<div />')
+			.text(text)
+			.css({
+				'padding': '0.5em',
+				'border': '1px black solid',
+				'cursor': 'pointer'
+			})
+			.click(clickCallback);
+	}
+	
 	function bindTwitterReplies() {
 		$("a.js-action-reply").each(function(i,e){
 		  $(e).unbind("click").click(function(evt){
@@ -89,21 +100,27 @@ IndieWebReplyModule = (function (){
 			
 			var properties = parseQueryStringFragment(src);
 			
-			var newButton = $('<div>Post to your Indieweb Site</div>')
-				.css({
-					'padding': '0.5em',
-					'border': '1px black solid',
-					'cursor': 'pointer'
-				})
-				.click(function () {
-					openNoteUI('post', {
-						url: properties.url,
-						via: '@' + properties.via,
-						hashtags: properties.hashtags,
-						text: properties.text
-					});
+			var newButton = createReplacementButton('Post to your Indieweb Site', function () {
+				openNoteUI('post', {
+					url: properties.url,
+					via: '@' + properties.via,
+					hashtags: properties.hashtags,
+					text: properties.text
 				});
+			});
 		
+			$(e).replaceWith(newButton);
+		});
+	}
+	
+	function bindFacebookLikeButtons() {
+		$('.fb-like').each(function, (i, e) {
+			var properties = {
+				'url': $(e).attr('href')
+			};
+			
+			var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('post', properties); });
+			
 			$(e).replaceWith(newButton);
 		});
 	}
