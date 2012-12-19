@@ -1,3 +1,10 @@
+// ==UserScript==
+// @name IndieWeb Reply
+// @include http://*
+// @require URI.js
+// @require jquery-8.3.1.min.js
+// ==/UserScript==
+
 /*
  * Copyright (c) 2012 by Aaron Parecki. All rights reserved.  Use of this
  * source code is governed by a BSD-style license that can be found in the
@@ -27,11 +34,17 @@ IndieWebReplyModule = (function (){
 	}
 	
 	function parseQueryString(url, callback) {
-		
+		var uri = new URI(response.parseQueryString);
+		response['queryString'] = uri.search(true);
 	}
 	
 	function parseQueryStringFragment(url, callback) {
-		
+		var uri = new URI(request.parseQueryStringFragment);
+		var fragment = '?' + uri.fragment();
+		console.log('Fragment:');
+		console.log(fragment);
+		var fragURI = new URI(fragment);
+		response['queryString'] = fragURI.search(true);
 	}
 	
 	function bindTwitter() {

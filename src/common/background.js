@@ -33,18 +33,12 @@ chrome.extension.onMessage.addListener(function (request, sender, sendResponse) 
 	
 	// Deal with parseQueryString requests
 	if (request.parseQueryString !== undefined) {
-		var uri = new URI(response.parseQueryString);
-		response['queryString'] = uri.search(true);
+		
 	}
 	
 	// Deal with parseQueryString requests
 	if (request.parseQueryStringFragment !== undefined) {
-		var uri = new URI(request.parseQueryStringFragment);
-		var fragment = '?' + uri.fragment();
-		console.log('Fragment:');
-		console.log(fragment);
-		var fragURI = new URI(fragment);
-		response['queryString'] = fragURI.search(true);
+		
 	}
 	
 	console.log('Sending response to onMessage:');
