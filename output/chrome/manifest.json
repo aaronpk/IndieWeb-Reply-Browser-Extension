@@ -1,21 +1,33 @@
 {
-  "name": "IndieWeb Reply", 
+  "web_accessible_resources": [
+    "resources/*"
+  ], 
+  "description": "Hijack reply buttons on twitter.com and Twitter buttons across the web for your own purposes", 
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*", 
+        "https://*/*"
+      ], 
+      "all_frames": true, 
+      "js": [
+        "includes/content.js"
+      ], 
+      "run_at": "document_start"
+    }
+  ], 
+  "manifest_version": 2, 
   "icons": {
     "128": "icons/icon128.png", 
     "48": "icons/icon48.png", 
     "16": "icons/button.png"
   }, 
-  "web_accessible_resources": [
-    "resources/*"
-  ], 
-  "description": "Hijack reply buttons on twitter.com and Twitter buttons across the web for your own purposes", 
-  "background": {
-    "page": "background.html"
-  }, 
   "homepage_url": "http://kangoextensions.com/", 
   "version": "0.9", 
   "options_page": "options.html", 
-  "manifest_version": 2, 
+  "background": {
+    "page": "background.html"
+  }, 
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'", 
   "browser_action": {
     "default_icon": "icons/button.png", 
@@ -29,5 +41,6 @@
     "webNavigation", 
     "notifications", 
     "cookies"
-  ]
+  ], 
+  "name": "IndieWeb Reply"
 }

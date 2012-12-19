@@ -1,6 +1,8 @@
 {
   "kango_version": "1.0.1 final", 
-  "content_scripts": [], 
+  "content_scripts": [
+    "content_script.js"
+  ], 
   "description": "Hijack reply buttons on twitter.com and Twitter buttons across the web for your own purposes", 
   "creator": "KangoExtensions", 
   "developer_id": "YOUR_SAFARI_DEVELOPER_ID", 

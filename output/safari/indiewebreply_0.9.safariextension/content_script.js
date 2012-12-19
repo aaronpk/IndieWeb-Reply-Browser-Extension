@@ -1,8 +1,9 @@
 // ==UserScript==
-// @name IndieWeb Reply
+// @name IndieWebReply
 // @include http://*
+// @include https://*
+// @require jquery-1.8.3.min.js
 // @require URI.js
-// @require jquery-8.3.1.min.js
 // ==/UserScript==
 
 /*
@@ -10,6 +11,10 @@
  * source code is governed by a BSD-style license that can be found in the
  * LICENSE file.
  */
+
+var $ = window.$.noConflict(true);
+
+console.log('User script loaded');
 
 IndieWebReplyModule = (function (){
 	// Private
@@ -119,5 +124,6 @@ IndieWebReplyModule = (function (){
 }());
 
 $(document).ready(function () {
+	console.log('Document.ready called');
 	IndieWebReplyModule.init();
 });
