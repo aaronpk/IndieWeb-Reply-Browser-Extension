@@ -38,13 +38,13 @@ IndieWebReplyModule = (function (){
 		});
 	}
 	
-	function parseQueryString(url, callback) {
-		var uri = new URI(response.parseQueryString);
+	function parseQueryString(url) {
+		var uri = new URI(url);
 		return uri.search(true);
 	}
 	
-	function parseQueryStringFragment(url, callback) {
-		var uri = new URI(request.parseQueryStringFragment);
+	function parseQueryStringFragment(url) {
+		var uri = new URI(url);
 		var fragment = '?' + uri.fragment();
 		console.log('Fragment:');
 		console.log(fragment);
@@ -89,24 +89,24 @@ IndieWebReplyModule = (function (){
 		$('.twitter-share-button').each(function (i, e) {
 			var src = $(e).attr('src');
 			
-			parseQueryStringFragment(src, function (properties) {
-				var newButton = $('<div>Post to your Indieweb Site</div>')
-					.css({
-						'padding': '0.5em',
-						'border': '1px black solid',
-						'cursor': 'pointer'
-					})
-					.click(function () {
-						openNoteUI({
-							url: properties.url,
-							via: '@' + properties.via,
-							hashtags: properties.hashtags,
-							text: properties.text
-						});
-					});
+			var properties = parseQueryStringFragment(src);
 			
-				$(e).replaceWith(newButton);
-			});
+			var newButton = $('<div>Post to your Indieweb Site</div>')
+				.css({
+					'padding': '0.5em',
+					'border': '1px black solid',
+					'cursor': 'pointer'
+				})
+				.click(function () {
+					openNoteUI({
+						url: properties.url,
+						via: '@' + properties.via,
+						hashtags: properties.hashtags,
+						text: properties.text
+					});
+				});
+		
+			$(e).replaceWith(newButton);
 		});
 	}
 	
