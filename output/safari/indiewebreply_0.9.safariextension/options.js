@@ -17,6 +17,8 @@ function main() {
   $('.monitor').each(function () {
     var self = $(this);
     
+    self.change(saveURL);
+    
     kango.invokeAsync('kango.storage.getItem', self.attr('id'), function (url) {
   	  self.val(url);
     });
@@ -25,5 +27,4 @@ function main() {
 
 KangoAPI.onReady(function () {
   main();
-  $('.monitor').change(saveURL);
 });
