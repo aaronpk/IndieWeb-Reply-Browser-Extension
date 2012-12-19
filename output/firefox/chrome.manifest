@@ -1,0 +1,3 @@
+content IndieWebnReply_kango chrome/content/
+overlay chrome://browser/content/browser.xul chrome://IndieWebnReply_kango/content/content.xul
+resource IndieWebnReply_kango chrome/content/

@@ -1,0 +1,48 @@
+<!doctype>
+<html>
+<head>
+  <title>Options for the IndieWeb Reply Extension</title>
+  <!--
+   * Copyright (c) 2012 by Aaron Parecki. All rights reserved.  Use of this
+   * source code is governed by a BSD-style license that can be found in the
+   * LICENSE file.
+  -->
+  <style>
+    body {
+    	font-family: "Georgia", serif;
+    	font-size: 18px;
+    }
+    
+    input[type=url] {
+    	font-size: 18px;
+    	width: 50em;
+    	max-width: 100%;
+    }
+  </style>
+  <script src="options.js"></script>
+  <script src="jquery-1.8.3.min.js"></script>
+  <script src="kango-ui/kango_api.js"></script>
+</head>
+<body>
+	<h1>Indieweb Reply Preferences</h1>
+	
+	<div id="providerSelection">
+		<p>Enter the URL of your new note UI:</p>
+		
+		<label>URL: <input id="postURL" name="postURL" type="url" /></label>
+		
+		<p>The following expressions will be expanded if they are available (empty string if not):</p>
+		
+		<dl>
+			<dt><code>{url}</code>
+			<dd>Expands to the (urlencoded) URL of the current page
+			<dt><code>{via}</code>
+			<dd>Twitter @name from Tweet buttons (without the @ sign)
+			<dt><code>{text}</code>
+			<dd>Pre-filled text from Tweet buttons
+			<dt><code>{hashtags}</code>
+			<dd>Any pre-filled hashtags from Tweet buttons
+		</dl>
+	</div>
+</body>
+</html>
