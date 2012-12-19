@@ -5,6 +5,7 @@
   "background_scripts": [
     "main.js"
   ],
+  "content_scripts": ["content_script.js"],
   "options_page": "options.html",
   "homepage_url": "http://kangoextensions.com/", 
   "version": "0.9", 
