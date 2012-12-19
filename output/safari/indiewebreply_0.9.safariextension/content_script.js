@@ -56,9 +56,20 @@ var IndieWebReplyModule = (function () {
         return $('<div />')
             .text(text)
             .css({
-                'padding': '0.5em',
-                'border': '1px black solid',
-                'cursor': 'pointer'
+            	'background-color': '#759AE9',
+				'background-image': 'linear-gradient(top, #759AE9 0%, #376FE0 50%, #1A5AD9 50%, #2463DE 100%)',
+				'border-top': '1px solid #1F58CC',
+				'border-right': '1px solid #1B4DB3',
+				'border-bottom': '1px solid #174299',
+				'border-left': '1px solid #1B4DB3',
+				'border-radius': '0.5em',
+				'-webkit-box-shadow': 'inset 0 0 2px 0 rgba(57, 140, 255, 0.8)',
+				'box-shadow': 'inset 0 0 2px 0 rgba(57, 140, 255, 0.8)',
+				'color': 'white',
+				'font-family': '"helvetica neue", helvetica, arial, sans-serif',
+				'padding': '0.5em',
+				'text-shadow': '0 -1px 1px #1A5AD9',
+				'display': 'inline'
             })
             .click(clickCallback);
     }
