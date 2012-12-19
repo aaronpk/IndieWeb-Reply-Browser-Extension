@@ -14,8 +14,6 @@
 
 var $ = window.$.noConflict(true);
 
-console.log('User script loaded');
-
 IndieWebReplyModule = (function (){
 	// Private
 	
@@ -46,8 +44,6 @@ IndieWebReplyModule = (function (){
 	function parseQueryStringFragment(url) {
 		var uri = new URI(url);
 		var fragment = '?' + uri.fragment();
-		console.log('Fragment:');
-		console.log(fragment);
 		var fragURI = new URI(fragment);
 		
 		return fragURI.search(true);
@@ -85,7 +81,6 @@ IndieWebReplyModule = (function (){
 	}
 	
 	function bindTwitterShareButtons() {
-		console.log('Binding twitter share buttons');
 		$('.twitter-share-button').each(function (i, e) {
 			var src = $(e).attr('src');
 			
@@ -124,6 +119,5 @@ IndieWebReplyModule = (function (){
 }());
 
 $(document).ready(function () {
-	console.log('Document.ready called');
 	IndieWebReplyModule.init();
 });
