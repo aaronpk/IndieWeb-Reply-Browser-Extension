@@ -14,14 +14,12 @@
 
 var $ = window.$.noConflict(true);
 
-console.log('User script loaded');
-
 IndieWebReplyModule = (function (){
 	// Private
 	
-	function openNoteUI(replace) {
+	function openNoteUI(verb, replace) {
 		
-		kango.invokeAsync('kango.storage.getItem', 'postURL', function (postURL) {
+		kango.invokeAsync('kango.storage.getItem', verb + 'URL', function (postURL) {
 			if (postURL === undefined) {
 				alert('You must set a Reply Post URL in Chrome options in order to use IndieWeb Reply');
 				return false;
@@ -46,20 +44,18 @@ IndieWebReplyModule = (function (){
 	function parseQueryStringFragment(url) {
 		var uri = new URI(url);
 		var fragment = '?' + uri.fragment();
-		console.log('Fragment:');
-		console.log(fragment);
 		var fragURI = new URI(fragment);
 		
 		return fragURI.search(true);
 	}
 	
-	function bindTwitter() {
+	function bindTwitterReplies() {
 		$("a.js-action-reply").each(function(i,e){
 		  $(e).unbind("click").click(function(evt){
 			var tweet = $(evt.target).parents(".tweet");
 			var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
 			
-			openNoteUI({
+			openNoteUI('reply', {
 				url: url
 			});
 			
@@ -68,14 +64,14 @@ IndieWebReplyModule = (function (){
 		});
 	}
 	
-	function bindAppDotNet() {
+	function bindAppDotNetReplies() {
 		// Set up app.net reply URLs
 		$("a[data-reply-to='']").each(function(i,e){
 		  $(e).click(function(evt){
 			var post = $(evt.target).parents(".post-container");
 			var url = "https://alpha.app.net/" + $(post).data('post-author-username') + "/post/" + $(post).attr('data-post-id');
 			
-			openNoteUI({
+			openNoteUI('reply', {
 				url: url
 			});
 			
@@ -85,7 +81,6 @@ IndieWebReplyModule = (function (){
 	}
 	
 	function bindTwitterShareButtons() {
-		console.log('Binding twitter share buttons');
 		$('.twitter-share-button').each(function (i, e) {
 			var src = $(e).attr('src');
 			
@@ -98,7 +93,7 @@ IndieWebReplyModule = (function (){
 					'cursor': 'pointer'
 				})
 				.click(function () {
-					openNoteUI({
+					openNoteUI('post', {
 						url: properties.url,
 						via: '@' + properties.via,
 						hashtags: properties.hashtags,
@@ -114,16 +109,15 @@ IndieWebReplyModule = (function (){
 	
 	return {
 		init: function () {
-			bindTwitter();
-			setTimeout(bindTwitter, 5000);
+			bindTwitterReplies();
+			setTimeout(bindTwitterReplies, 5000);
 			
-			bindAppDotNet();
+			bindAppDotNetReplies();
 			bindTwitterShareButtons();
 		}
 	};
 }());
 
 $(document).ready(function () {
-	console.log('Document.ready called');
 	IndieWebReplyModule.init();
 });

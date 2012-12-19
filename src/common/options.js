@@ -5,11 +5,6 @@
  */
 
 function saveURL(evt) {
-  if (window.localStorage == null) {
-    alert('Local storage is required for changing providers');
-    return;
-  }
-  
   kango.invokeAsync('kango.storage.setItem', $(evt.target).attr('id'), evt.target.value);
   
   $('#notice').text('Unsaved Changes Made!').toggleClass('unsaved');
@@ -19,12 +14,7 @@ function saveURL(evt) {
 }
 
 function main() {
-  if (window.localStorage == null) {
-    alert("LocalStorage must be enabled for changing options.");
-    return;
-  }
-  
-  $('.monitor').val(function () {
+  $('.monitor').each(function () {
     var self = $(this);
     
     kango.invokeAsync('kango.storage.getItem', self.attr('id'), function (url) {
@@ -35,5 +25,5 @@ function main() {
 
 KangoAPI.onReady(function () {
   main();
-  document.querySelector('.monitor').addEventListener('change', saveURL);
+  $('.monitor').change(saveURL);
 });

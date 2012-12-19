@@ -18,6 +18,15 @@
     	width: 50em;
     	max-width: 100%;
     }
+    
+    .notice {
+    	color: green;
+    }
+    
+    .unsaved {
+    	color: red;
+    	font-weight: bold;
+    }
   </style>
   <script src="jquery-1.8.3.min.js"></script>
   <script src="kango-ui/kango_api.js"></script>
@@ -26,22 +35,39 @@
 <body>
 	<h1>Indieweb Reply Preferences</h1>
 	
+	<p class="notice" id="notice"></p>
+	
 	<div id="providerSelection">
-		<p>Enter the URL of your new note UI:</p>
+		<p>You can set different URLs to redirect to based on the verb implied through the hijack context — for example, a hijacked reply button will trigger the <code>reply</code> action, hijacked Tweet buttons will trigger the <code>post</code> action.</p>
 		
-		<label>URL: <input id="postURL" name="postURL" type="url" /></label>
+		<p>Placeholders (in the form of <code>{name}</code>) can be inserted into these URLs, which will be replaced with the associated bit of metadata if it’s available, or an empty string otherwise.</p>
+		
+		<h2>Post</h2>
+		
+		<label>URL: <input id="postURL" name="postURL" type="url" class="monitor" /></label>
 		
 		<p>The following expressions will be expanded if they are available (empty string if not):</p>
 		
 		<dl>
 			<dt><code>{url}</code>
-			<dd>Expands to the (urlencoded) URL of the current page
+			<dd>Expands to the (urlencoded) URL of the page you’re posting
 			<dt><code>{via}</code>
 			<dd>Twitter @name from Tweet buttons (without the @ sign)
 			<dt><code>{text}</code>
 			<dd>Pre-filled text from Tweet buttons
 			<dt><code>{hashtags}</code>
 			<dd>Any pre-filled hashtags from Tweet buttons
+		</dl>
+		
+		<h2>Reply</h2>
+		
+		<label>URL: <input id="replyURL" name="replyURL" type="url" class="monitor" /></label>
+		
+		<p>The following expressions will be expanded if they are available (empty string if not):</p>
+		
+		<dl>
+			<dt><code>{url}</code>
+			<dd>Expands to the (urlencoded) URL of the URL you’re replying to
 		</dl>
 	</div>
 </body>
