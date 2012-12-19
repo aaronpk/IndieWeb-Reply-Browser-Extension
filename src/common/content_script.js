@@ -33,7 +33,7 @@ IndieWebReplyModule = (function (){
 			}
 			
 			// replace any unreplaced templates with nothing
-			postURL = postURL.replace(/\{[a-zA-Z0-9_-]\}/, '');
+			postURL = postURL.replace(/\{[a-zA-Z0-9_-]+\}/, '');
 			
 			window.open(postURL);
 		});

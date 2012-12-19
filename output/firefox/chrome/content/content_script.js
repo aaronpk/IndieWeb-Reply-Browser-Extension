@@ -26,8 +26,14 @@ IndieWebReplyModule = (function (){
 			}
 			
 			// Replace template vars
-			var template = new URITemplate(postURL);
-			var result = template.expand(replace);
+			for (var template in replace) {
+				if (replace[template] == undefined)
+					continue;
+				postURL = postURL.split('{' + template + '}').join(encodeURIComponent(replace[template]));
+			}
+			
+			// replace any unreplaced templates with nothing
+			postURL = postURL.replace(/\{[a-zA-Z0-9_-]+\}/, '');
 			
 			window.open(postURL);
 		});
