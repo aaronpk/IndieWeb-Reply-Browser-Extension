@@ -1,18 +1,28 @@
 IndieWeb Reply
 ==============
 
-This browser extension rewrites Twitter.com "reply" buttons to open a browser window to your own site, allowing you to post a reply from your site.
+This cross-browser extension rewrites Twitter.com "reply" buttons to open a browser window to your own site, allowing you to post a reply from your site.
 
 ## Installation
 
-Until we push it out onto whatever deployment system Chrome use for plugins, you’ll have to clone the repo and install the plugin manually. To do this:
+IndieWeb Reply is built with [kango](http://kangoextensions.com) and as such is cross-browser (apart from IE). The different versions are built in the repo, but until we offer signed, packaged downloads you’ll have to install them manually.
+
+### Chrome
 
 1. Clone the repo to your computer
 1. In chrome, navigate to `chrome://chrome/extensions`
 1. Enable developer mode (top right corner)
 1. Click "Load Packaged Extension"
-1. Navigate to the `/chrome/` folder within the cloned repo
-1. GO!
+1. Navigate to the `/output/chrome/` folder within the cloned repo
+1. Continue to [Setup](#setup)
+
+### Safari
+
+1. Go Develop -> Show Extension Builder
+1. Click the little plus sign in the bottom left, select "Add Extension"
+1. Navigate to `/output/safari` and select the folder. Okay.
+1. Click "Install" (top right)
+1. There should be a new IndieWeb Reply button in your toolbar. Click this to set enter the options dialog, then continue
 
 ## Setup
 
