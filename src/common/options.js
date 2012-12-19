@@ -10,6 +10,10 @@ function saveURL(evt) {
     return;
   }
   kango.invokeAsync('kango.storage.setItem', 'postURL', evt.target.value);
+  $('#notice').text('Unsaved Changes Made!').toggleClass('unsaved');
+  window.setTimeout(function () {
+    $('#notice').text('Changes Saved').toggleClass('unsaved');
+  }, 200);
 }
 
 function main() {
