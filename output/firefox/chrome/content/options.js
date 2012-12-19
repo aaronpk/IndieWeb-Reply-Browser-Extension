@@ -17,7 +17,7 @@ function main() {
   $('.monitor').each(function () {
     var self = $(this);
     
-    self.change(saveURL);
+    self.keyup(saveURL);
     
     kango.invokeAsync('kango.storage.getItem', self.attr('id'), function (url) {
   	  self.val(url);
