@@ -9,7 +9,9 @@ function saveURL(evt) {
     alert('Local storage is required for changing providers');
     return;
   }
-  kango.invokeAsync('kango.storage.setItem', 'postURL', evt.target.value);
+  
+  kango.invokeAsync('kango.storage.setItem', $(evt.target).attr('id'), evt.target.value);
+  
   $('#notice').text('Unsaved Changes Made!').toggleClass('unsaved');
   window.setTimeout(function () {
     $('#notice').text('Changes Saved').toggleClass('unsaved');
@@ -22,12 +24,16 @@ function main() {
     return;
   }
   
-  kango.invokeAsync('kango.storage.getItem', 'postURL', function (url) {
-  	document.getElementById('postURL').value = url;
+  $('.monitor').val(function () {
+    var self = $(this);
+    
+    kango.invokeAsync('kango.storage.getItem', self.attr('id'), function (url) {
+  	  self.val(url);
+    });
   });
 }
 
 KangoAPI.onReady(function () {
   main();
-  document.querySelector('#postURL').addEventListener('change', saveURL);
+  document.querySelector('.monitor').addEventListener('change', saveURL);
 });
