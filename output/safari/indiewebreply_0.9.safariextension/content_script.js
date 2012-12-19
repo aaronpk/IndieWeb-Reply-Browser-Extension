@@ -69,9 +69,7 @@ var IndieWebReplyModule = (function () {
             var tweet = $(evt.target).parents(".tweet");
             var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
             
-            openNoteUI('reply', {
-                url: url
-            });
+            openNoteUI('reply', { url: url });
             
             return false;
           });
@@ -85,9 +83,7 @@ var IndieWebReplyModule = (function () {
             var post = $(evt.target).parents(".post-container");
             var url = "https://alpha.app.net/" + $(post).data('post-author-username') + "/post/" + $(post).attr('data-post-id');
             
-            openNoteUI('reply', {
-                url: url
-            });
+            openNoteUI('reply', { url: url });
             
             return false;
           });
@@ -112,7 +108,7 @@ var IndieWebReplyModule = (function () {
     }
     
     function bindFacebookLikeButtons() {
-        $('.fb-like').each(function, (i, e) {
+        $('.fb-like').each(function (i, e) {
             console.log('Binding facebook like button');
             console.log(e);
             var properties = {

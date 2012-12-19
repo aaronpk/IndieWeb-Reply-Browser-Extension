@@ -108,7 +108,7 @@ var IndieWebReplyModule = (function () {
     }
     
     function bindFacebookLikeButtons() {
-        $('.fb-like').each(function, (i, e) {
+        $('.fb-like').each(function (i, e) {
             console.log('Binding facebook like button');
             console.log(e);
             var properties = {
