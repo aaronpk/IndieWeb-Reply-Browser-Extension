@@ -117,22 +117,17 @@
 			</div>
 		</div>
 		
-		<label><b>Follow</b> ⇒ <input id="fallowURL" type="url" class="monitor" placeholder="http://example.com/contacts/new" /></label>
+		<label><b>Follow</b> ⇒ <input id="fallowURL" type="url" class="monitor" placeholder="http://example.com/contacts/new?url={url}" /></label>
 		
 		<div class="metadata">
 			<dl class="templates">
 				<dt><code>{url}</code>
-					<dd>Expands to the (urlencoded) URL you’re favouriting
-				<dt><code>{text}</code>
-					<dd>Expands to the text of the tweet you’re replying to
-				<dt><code>{username}</code>
-					<dd>Expands to the @name of the twitter user you’re favouriting
+					<dd>Expands to the (urlencoded) URL of the person you’re following
 			</dl>
 			<div class="replaces">
 				<p>Replaces:</p>
 				<ul>
-					<li>Twitter.com favourite links</li>
-					<li>Facebook Like Buttons across the web</li>
+					<li>Twitter Follow Buttons across the web</li>
 				</ul>
 			</div>
 		</div>
