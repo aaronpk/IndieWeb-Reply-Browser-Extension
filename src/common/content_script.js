@@ -80,6 +80,22 @@ var IndieWebReplyModule = (function () {
             var tweet = $(evt.target).parents(".tweet");
             var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
             
+            openNoteUI('reply', {
+            	url: url,
+            	username: $(tweet).data('screen-name')
+			});
+            
+            return false;
+          });
+        });
+    }
+    
+    function bindTwitterRetweets() {
+        $("a.js-action-retweet").each(function(i,e){
+          $(e).unbind("click").click(function(evt){
+            var tweet = $(evt.target).parents(".tweet");
+            var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
+            
             openNoteUI('reply', { url: url });
             
             return false;
@@ -126,7 +142,7 @@ var IndieWebReplyModule = (function () {
                 'url': $(e).attr('href')
             };
             
-            var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('post', properties); });
+            var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('favourite', properties); });
             
             $(e).replaceWith(newButton);
         });
