@@ -56,7 +56,7 @@
 		
 		<p>Placeholders (in the form of <code>{name}</code>) can be inserted into these URLs, which will be replaced with the associated bit of metadata if it’s available, or an empty string otherwise.</p>
 		
-		<label><b>Post</b> ⇒ <input id="postURL" name="postURL" type="url" class="monitor" placeholder="http://example.org/notes/new?text={text}+{url}" /></label>
+		<label><b>Post</b> ⇒ <input id="postURL" type="url" class="monitor" placeholder="http://example.org/notes/new?text={text}+{url}" /></label>
 		
 		<div class="metadata">
 			<dl class="templates">
@@ -72,23 +72,44 @@
 			<div class="replaces">
 				<p>Replaces:</p>
 				<ul>
-					<li>Tweet Buttons</li>
-					<li>Facebook Like Buttons</li>
+					<li>Tweet Buttons across the web</li>
 				</ul>
 			</div>		
 		</div>
 		
-		<label><b>Reply</b> ⇒ <input id="replyURL" name="replyURL" type="url" class="monitor" placeholder="http://example.com/notes/new?inReplyTo={url}&text={text}" /></label>
+		<label><b>Reply</b> ⇒ <input id="replyURL" type="url" class="monitor" placeholder="http://example.com/notes/new?inReplyTo={url}&text={text}" /></label>
 		
 		<div class="metadata">
 			<dl class="templates">
 				<dt><code>{url}</code>
-				<dd>Expands to the (urlencoded) URL you’re replying to
+					<dd>Expands to the (urlencoded) URL you’re replying to
+				<dt><code>{username}</code>
+					<dd>Expands to the @name of the Twitter user you’re replying to
 			</dl>
 			<div class="replaces">
 				<p>Replaces:</p>
 				<ul>
 					<li>Twitter.com reply links</li>
+				</ul>
+			</div>
+		</div>
+		
+		<label><b>Favourite</b> ⇒ <input id="favouriteURL" type="url" class="monitor" placeholder="http://example.com/notes/new?&text={url}+%23bookmark" /></label>
+		
+		<div class="metadata">
+			<dl class="templates">
+				<dt><code>{url}</code>
+					<dd>Expands to the (urlencoded) URL you’re favouriting
+				<dt><code>{text}</code>
+					<dd>Expands to the text of the tweet you’re replying to
+				<dt><code>{username}</code>
+					<dd>Expands to the @name of the user you’re retweeting
+			</dl>
+			<div class="replaces">
+				<p>Replaces:</p>
+				<ul>
+					<li>Twitter.com retweet links</li>
+					<li>Facebook Like Buttons across the web</li>
 				</ul>
 			</div>
 		</div>
