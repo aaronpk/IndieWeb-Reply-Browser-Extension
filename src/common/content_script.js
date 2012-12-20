@@ -164,6 +164,20 @@ var IndieWebReplyModule = (function () {
 				$(e).replaceWith(newButton);
 			});
 	}
+	
+	function bindTwitterFollowButtons() {
+		$('.twitter-follow-button').each(function (i, e) {
+			var urlProps = parseQueryStringFragment($(e).attr(src));
+			
+			var properties = {
+				url: 'https://twitter.com/' + urlProps.screen_name
+			};
+			
+			var newButton = createReplacementButton('Follow on your Indieweb Site', function () { openNoteUI('follow', properties); });
+			
+			$(e).replaceWith(newButton);
+		});
+	}
     
     function bindFacebookLikeButtons() {
         $('.fb-like').each(function (i, e) {
