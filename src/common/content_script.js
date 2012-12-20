@@ -224,6 +224,7 @@ var IndieWebReplyModule = (function () {
             
             bindAppDotNetReplies();
             bindTwitterShareButtons();
+            bindTwitterFollowButtons();
             bindFacebookLikeButtons();
             bindGooglePlusOneButtons();
         }
