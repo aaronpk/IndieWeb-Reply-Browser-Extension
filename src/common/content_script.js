@@ -173,6 +173,8 @@ var IndieWebReplyModule = (function () {
     	$('[id^="___plusone_"]').each(function (i, e) {
     		var q = new URI($(e).find('iframe').attr('src')).search(true);
     		
+    		console.log(q.url);
+    		
     		var properties = {
     			url: (q.url ? q.url : document.location.href)
     		};
