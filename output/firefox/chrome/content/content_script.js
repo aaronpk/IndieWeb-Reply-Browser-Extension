@@ -144,7 +144,7 @@ var IndieWebReplyModule = (function () {
             var properties = parseQueryStringFragment(src);
             var newButton = createReplacementButton('Post to your Indieweb Site', function () {
                 openNoteUI('post', {
-                    url: (properties.url ? properties.url : window.location),
+                    url: (properties.url ? properties.url : document.location.href),
                     username: '@' + properties.via,
                     hashtags: properties.hashtags,
                     text: properties.text
@@ -160,7 +160,7 @@ var IndieWebReplyModule = (function () {
             var url = $(e).attr('href');
             
             var properties = {
-                url: (url ? url : window.location)
+                url: (url ? url : document.location.href)
             };
             
             var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('favourite', properties); });
