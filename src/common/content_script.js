@@ -167,7 +167,7 @@ var IndieWebReplyModule = (function () {
 	
 	function bindTwitterFollowButtons() {
 		$('.twitter-follow-button').each(function (i, e) {
-			var urlProps = parseQueryStringFragment($(e).attr(src));
+			var urlProps = parseQueryStringFragment($(e).attr('src'));
 			
 			var properties = {
 				url: 'https://twitter.com/' + urlProps.screen_name
