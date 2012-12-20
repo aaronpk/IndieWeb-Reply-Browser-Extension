@@ -50,23 +50,34 @@
 		
 		<label><b>Post</b> ⇒ <input id="postURL" name="postURL" type="url" class="monitor" placeholder="http://example.org/notes/new?text={text}+{url}" /></label>
 		
-		<dl>
-			<dt><code>{url}</code>
-			<dd>Expands to the (urlencoded) URL of the page you’re posting
-			<dt><code>{via}</code>
-			<dd>Twitter @name from Tweet buttons
-			<dt><code>{text}</code>
-			<dd>Pre-filled text from Tweet buttons
-			<dt><code>{hashtags}</code>
-			<dd>Any pre-filled hashtags from Tweet buttons
-		</dl>
+		<div class="metadata">
+			<ul class="replaces">
+				<li>Tweet Buttons</li>
+				<li>Facebook Like Buttons</li>
+			</ul>
+			<dl class="templates">
+				<dt><code>{url}</code>
+				<dd>Expands to the (urlencoded) URL of the page you’re posting
+				<dt><code>{via}</code>
+				<dd>Twitter @name from Tweet buttons
+				<dt><code>{text}</code>
+				<dd>Pre-filled text from Tweet buttons
+				<dt><code>{hashtags}</code>
+				<dd>Any pre-filled hashtags from Tweet buttons
+			</dl>			
+		</div>
 		
 		<label><b>Reply</b> ⇒ <input id="replyURL" name="replyURL" type="url" class="monitor" placeholder="http://example.com/notes/new?inReplyTo={url}&text={text}" /></label>
 		
-		<dl>
-			<dt><code>{url}</code>
-			<dd>Expands to the (urlencoded) URL you’re replying to
-		</dl>
+		<div class="metadata">
+			<ul class="replaces">
+				<li>Twitter.com reply links</li>
+			</ul>
+			<dl class="templates">
+				<dt><code>{url}</code>
+				<dd>Expands to the (urlencoded) URL you’re replying to
+			</dl>
+		</div>
 	</div>
 </body>
 </html>
