@@ -80,7 +80,44 @@ var IndieWebReplyModule = (function () {
             var tweet = $(evt.target).parents(".tweet");
             var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
             
-            openNoteUI('reply', { url: url });
+            openNoteUI('reply', {
+            	url: url,
+            	username: $(tweet).data('screen-name')
+			});
+            
+            return false;
+          });
+        });
+    }
+    
+    function bindTwitterRetweets() {
+        $("a.js-toggle-rt").each(function(i,e){
+          $(e).unbind("click").click(function(evt){
+            var tweet = $(evt.target).parents(".tweet");
+            var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
+            
+            openNoteUI('post', {
+            	url: url,
+            	username: $(tweet).data('screen-name'),
+            	text: $(tweet).find('.js-tweet-text').text()
+			});
+            
+            return false;
+          });
+        });
+    }
+    
+    function bindTwitterFavourites() {
+        $("a.js-toggle-fav").each(function(i,e){
+          $(e).unbind("click").click(function(evt){
+            var tweet = $(evt.target).parents(".tweet");
+            var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
+            
+            openNoteUI('favourite', {
+            	url: url,
+            	username: $(tweet).data('screen-name'),
+            	text: $(tweet).find('.js-tweet-text').text()
+			});
             
             return false;
           });
@@ -108,7 +145,7 @@ var IndieWebReplyModule = (function () {
             var newButton = createReplacementButton('Post to your Indieweb Site', function () {
                 openNoteUI('post', {
                     url: properties.url,
-                    via: '@' + properties.via,
+                    username: '@' + properties.via,
                     hashtags: properties.hashtags,
                     text: properties.text
                 });
@@ -126,7 +163,7 @@ var IndieWebReplyModule = (function () {
                 'url': $(e).attr('href')
             };
             
-            var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('post', properties); });
+            var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('favourite', properties); });
             
             $(e).replaceWith(newButton);
         });
@@ -138,6 +175,12 @@ var IndieWebReplyModule = (function () {
         init: function () {
             bindTwitterReplies();
             setTimeout(bindTwitterReplies, 5000);
+            
+            bindTwitterRetweets();
+            setTimeout(bindTwitterRetweets, 5000);
+            
+            bindTwitterFavourites();
+            setTimeout(bindTwitterFavourites, 5000);
             
             bindAppDotNetReplies();
             bindTwitterShareButtons();

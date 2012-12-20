@@ -29,7 +29,7 @@ var IndieWebReplyModule = (function () {
             for (var template in replace) {
                 if (replace[template] == undefined)
                     continue;
-                postURL = postURL.split('{' + template + '}').join(encodeURIComponent(replace[template]));
+                postURL = postURL.split('{' + template + '}').join(encodeURIComponent(replace[template].replace(/^\s+|\s+$/g, '')));
             }
             
             // replace any unreplaced templates with nothing
@@ -82,7 +82,7 @@ var IndieWebReplyModule = (function () {
             
             openNoteUI('reply', {
             	url: url,
-            	username: $(tweet).data('screen-name')
+            	username: '@' + $(tweet).data('screen-name')
 			});
             
             return false;
@@ -98,7 +98,7 @@ var IndieWebReplyModule = (function () {
             
             openNoteUI('post', {
             	url: url,
-            	username: $(tweet).data('screen-name'),
+            	username: '@' + $(tweet).data('screen-name'),
             	text: $(tweet).find('.js-tweet-text').text()
 			});
             
@@ -115,7 +115,7 @@ var IndieWebReplyModule = (function () {
             
             openNoteUI('favourite', {
             	url: url,
-            	username: $(tweet).data('screen-name'),
+            	username: '@' + $(tweet).data('screen-name'),
             	text: $(tweet).find('.js-tweet-text').text()
 			});
             
