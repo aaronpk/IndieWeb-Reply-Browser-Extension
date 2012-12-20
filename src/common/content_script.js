@@ -139,21 +139,31 @@ var IndieWebReplyModule = (function () {
     }
     
     function bindTwitterShareButtons() {
-        $('.twitter-share-button').each(function (i, e) {
-            var src = $(e).attr('src');
-            var properties = parseQueryStringFragment(src);
-            var newButton = createReplacementButton('Post to your Indieweb Site', function () {
-                openNoteUI('post', {
-                    url: (properties.url ? properties.url : document.location.href),
-                    username: '@' + properties.via,
-                    hashtags: properties.hashtags,
-                    text: properties.text
-                });
-            });
-        
-            $(e).replaceWith(newButton);
-        });
-    }
+        $('.twitter-share-button, .twitter-mention-button, .twitter-hashtag-button')
+			.each(function (i, e) {
+				var src = $(e).attr('src');
+				var properties = parseQueryStringFragment(src);
+				
+				var username = '@' + $(e).hasClass('.twitter-share-button')
+					? properties.via
+					: properties.screen_name;
+				
+				var hashtags = $(e).hasClass('.twitter-hashtag-button')
+					? properties.button_hashtag
+					: properties.hashtags;
+				
+				var newButton = createReplacementButton('Post to your Indieweb Site', function () {
+					openNoteUI('post', {
+						url: (properties.url ? properties.url : document.location.href),
+						username: username,
+						hashtags: hashtags,
+						text: properties.text
+					});
+				});
+			
+				$(e).replaceWith(newButton);
+			});
+	}
     
     function bindFacebookLikeButtons() {
         $('.fb-like').each(function (i, e) {
