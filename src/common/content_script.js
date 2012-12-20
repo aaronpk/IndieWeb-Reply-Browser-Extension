@@ -91,7 +91,7 @@ var IndieWebReplyModule = (function () {
     }
     
     function bindTwitterRetweets() {
-        $("a.js-action-retweet").each(function(i,e){
+        $("a.js-toggle-rt").each(function(i,e){
           $(e).unbind("click").click(function(evt){
             var tweet = $(evt.target).parents(".tweet");
             var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
