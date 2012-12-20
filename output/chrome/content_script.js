@@ -178,6 +178,8 @@ var IndieWebReplyModule = (function () {
     		};
     		
     		var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('favourite', properties); });
+    		
+    		$(e).replaceWith(newButton);
     	});
     }
     
