@@ -169,6 +169,18 @@ var IndieWebReplyModule = (function () {
         });
     }
     
+    function bindGooglePlusOneButtons() {
+    	$('[id^="___plusone_"]').each(function (i, e) {
+    		var q = new URI($(e).find('iframe').attr('src')).search(true);
+    		
+    		var properties = {
+    			url: (q.url ? q.url : document.location.href)
+    		};
+    		
+    		var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('favourite', properties); });
+    	});
+    }
+    
     // Public
     
     return {
@@ -185,6 +197,7 @@ var IndieWebReplyModule = (function () {
             bindAppDotNetReplies();
             bindTwitterShareButtons();
             bindFacebookLikeButtons();
+            bindGooglePlusOneButtons();
         }
     };
 }());
