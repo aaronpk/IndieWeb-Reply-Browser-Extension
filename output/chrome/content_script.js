@@ -29,7 +29,7 @@ var IndieWebReplyModule = (function () {
             for (var template in replace) {
                 if (replace[template] == undefined)
                     continue;
-                postURL = postURL.split('{' + template + '}').join(encodeURIComponent(replace[template]));
+                postURL = postURL.split('{' + template + '}').join(encodeURIComponent(replace[template].replace(/^\s+|\s+$/g, '')));
             }
             
             // replace any unreplaced templates with nothing
@@ -75,14 +75,14 @@ var IndieWebReplyModule = (function () {
     }
     
     function bindTwitterReplies() {
-        $("a.js-action-reply").each(function(i,e){
-          $(e).unbind("click").click(function(evt){
+        $("a.js-action-reply").each(function(i, e) {
+          $(e).unbind("click").click(function(evt) {
             var tweet = $(evt.target).parents(".tweet");
             var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
             
             openNoteUI('reply', {
             	url: url,
-            	username: $(tweet).data('screen-name')
+            	username: '@' + $(tweet).data('screen-name')
 			});
             
             return false;
@@ -91,14 +91,14 @@ var IndieWebReplyModule = (function () {
     }
     
     function bindTwitterRetweets() {
-        $("a.js-toggle-rt").each(function(i,e){
-          $(e).unbind("click").click(function(evt){
+        $("a.js-toggle-rt").each(function(i,e) {
+          $(e).unbind("click").click(function(evt) {
             var tweet = $(evt.target).parents(".tweet");
-            var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
+            var tweetUrl = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
             
             openNoteUI('post', {
-            	url: url,
-            	username: $(tweet).data('screen-name'),
+            	tweetURL: tweetUrl,
+            	username: '@' + $(tweet).data('screen-name'),
             	text: $(tweet).find('.js-tweet-text').text()
 			});
             
@@ -108,14 +108,14 @@ var IndieWebReplyModule = (function () {
     }
     
     function bindTwitterFavourites() {
-        $("a.js-toggle-fav").each(function(i,e){
-          $(e).unbind("click").click(function(evt){
+        $("a.js-toggle-fav").each(function(i, e) {
+          $(e).unbind("click").click(function(evt) {
             var tweet = $(evt.target).parents(".tweet");
             var url = "https://twitter.com/" + $(tweet).data('screen-name') + "/status/" + $(tweet).attr('data-item-id');
             
             openNoteUI('favourite', {
             	url: url,
-            	username: $(tweet).data('screen-name'),
+            	username: '@' + $(tweet).data('screen-name'),
             	text: $(tweet).find('.js-tweet-text').text()
 			});
             
@@ -126,8 +126,8 @@ var IndieWebReplyModule = (function () {
     
     function bindAppDotNetReplies() {
         // Set up app.net reply URLs
-        $("a[data-reply-to='']").each(function(i,e){
-          $(e).click(function(evt){
+        $("a[data-reply-to='']").each(function(i, e) {
+          $(e).click(function(evt) {
             var post = $(evt.target).parents(".post-container");
             var url = "https://alpha.app.net/" + $(post).data('post-author-username') + "/post/" + $(post).attr('data-post-id');
             
@@ -144,7 +144,7 @@ var IndieWebReplyModule = (function () {
             var properties = parseQueryStringFragment(src);
             var newButton = createReplacementButton('Post to your Indieweb Site', function () {
                 openNoteUI('post', {
-                    url: properties.url,
+                    url: (properties.url ? properties.url : window.location),
                     username: '@' + properties.via,
                     hashtags: properties.hashtags,
                     text: properties.text
@@ -157,10 +157,10 @@ var IndieWebReplyModule = (function () {
     
     function bindFacebookLikeButtons() {
         $('.fb-like').each(function (i, e) {
-            console.log('Binding facebook like button');
-            console.log(e);
+            var url = $(e).attr('href');
+            
             var properties = {
-                'url': $(e).attr('href')
+                url: (url ? url : window.location)
             };
             
             var newButton = createReplacementButton('Post to your Indieweb Site', function () { openNoteUI('favourite', properties); });
@@ -174,13 +174,13 @@ var IndieWebReplyModule = (function () {
     return {
         init: function () {
             bindTwitterReplies();
-            setTimeout(bindTwitterReplies, 5000);
+            setTimeout(bindTwitterReplies, 5000); /**/
             
             bindTwitterRetweets();
-            setTimeout(bindTwitterRetweets, 5000);
+            setTimeout(bindTwitterRetweets, 5000); /**/
             
             bindTwitterFavourites();
-            setTimeout(bindTwitterFavourites, 5000);
+            setTimeout(bindTwitterFavourites, 5000); /**/
             
             bindAppDotNetReplies();
             bindTwitterShareButtons();
