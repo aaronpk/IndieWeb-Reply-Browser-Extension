@@ -46,7 +46,9 @@ A window opens on your own domain so you can reply from your site
 
 ### Other websites
 
-Tweet buttons on other websites should get replaced with a "Post to your indieweb site" button. If you see one which isn’t could you do us a huge favour and add an issue with the offending URL? Much appreciated :)
+Various social buttons on other websites across the web get converted into “Post to your Indieweb Site” or “Follow on your Indieweb Site”:
+
+![You should start seeing blue Indieweb buttons where Twitter, Faceboon and Google+ Buttons should be](http://photos.waterpigs.co.uk/photos/custom/201212/Screen-shot-2012-12-22-at-14.17.25-1f9433_870x550.jpg)
 
 ## Advanced Setup
 
