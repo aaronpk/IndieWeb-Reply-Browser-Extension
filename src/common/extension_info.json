@@ -1,0 +1,18 @@
+{
+  "content_scripts": [], 
+  "description": "Hijack reply buttons on twitter.com and Twitter buttons across the web for your own purposes", 
+  "creator": "KangoExtensions", 
+  "background_scripts": [
+    "main.js"
+  ],
+  "content_scripts": ["content_script.js"],
+  "options_page": "options.html",
+  "homepage_url": "http://kangoextensions.com/", 
+  "version": "0.9", 
+  "browser_button": {
+    "caption": "Kango", 
+    "icon": "icons/button.png", 
+    "tooltipText": "Kango"
+  }, 
+  "name": "IndieWeb Reply"
+}

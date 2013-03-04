@@ -1,0 +1,11 @@
+<?xml version="1.0" ?><widget id="http://kangoextensions.com/extensions/indiewebreply/" version="0.9" xmlns="http://www.w3.org/ns/widgets">
+	<name>IndieWeb Reply</name>
+	<description>Hijack reply buttons on twitter.com and Twitter buttons across the web for your own purposes</description>
+	<author href="http://kangoextensions.com/">KangoExtensions</author>
+	<update-description href=""/>
+	<icon src="icons/icon100.png"/>
+	<content src="background.html"/>
+	<access origin="*"/>
+	<feature name="opera:share-cookies"/>
+    <feature name="opera:contextmenus"/>
+</widget>
